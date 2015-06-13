@@ -1,0 +1,65 @@
+<jevonhome>
+
+    <rooms>
+        <room id="1" name="Living room"></room>
+        <room id="2" name="Kitchen"></room>
+        <room id="3" name="Office"></room>
+        <room id="4" name="Bedroom"></room>
+    </rooms>
+    
+    <devices>
+        <device id="1" name="Standing lamp 1">
+            <room-id>1</room-id>
+            <deviceconnector>
+                <module-id>1</module-id>
+                <devicecode>lamp1</devicecode>
+            </deviceconnector>
+        </device>
+        <device id="2"  name="Standing lamp 2">
+            <room-id>1</room-id>
+            <deviceconnector>
+                <module-id>1</module-id>
+                <devicecode>lamp2</devicecode>
+            </deviceconnector>
+        </device>
+        <device id="3"  name="Remote control 1">
+            <deviceconnector>
+                <module-id>1</module-id>
+                <devicecode>remotecontrol1</devicecode>
+            </deviceconnector>
+               
+        </device>
+    </devices>
+    
+    <modules>
+        <module id="1" type="rf433">
+            <amqp-queue>rf433</amqp-queue>
+        </module>
+    </modules>
+    
+    <rules>
+        <rule>
+            <incomingsignal>
+                <devicecode>test</devicecode>
+                <signalcode>A-ON</signalcode>
+            </incomingsignal>
+            <action>
+                <command value="AllLightsOn">
+                    <room-id>1</room-id>
+                </command>
+            </action>
+        </rule>
+        <rule>
+            <incomingsignal>
+                <devicecode>test</devicecode>
+                <signalcode>A-OFF</signalcode>
+            </incomingsignal>
+            <action>
+                <command value="AllLightsOff">
+                    <room-id>1</room-id>
+                </command>
+            </action>
+        </rule>
+    </rules>
+    
+</jevonhome>

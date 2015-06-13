@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/config.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE jevonhome SYSTEM "config.dtd">
+
+    <jevonhome>
+    ...
+    </jevonhome>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT jevonhome (rules|modules|devices|rooms)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT rooms (room)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT room EMPTY>
+<!ATTLIST room
+    name CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT devices (device)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT device (deviceconnector|roomid)*>
+<!ATTLIST device
+    name CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT roomid (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT deviceconnector (devicecode|moduleid)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT moduleid (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT devicecode (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT modules (module)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT module (amqp-queue)*>
+<!ATTLIST module
+    type CDATA #IMPLIED
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT amqp-queue (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT rules (rule)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT rule (action|incomingsignal)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT incomingsignal (signalcode|devicecode)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT signalcode (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT action (command)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT command (roomid)*>
+<!ATTLIST command
+    value CDATA #IMPLIED
+  >
