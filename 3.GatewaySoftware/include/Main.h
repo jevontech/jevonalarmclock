@@ -1,8 +1,8 @@
 /* 
- * File:   Main.h
- * Author: jeroen
+ * @file  Main.h
+ * @author Jeroen Vennegoor op Nijhuis
  *
- * Created on March 12, 2015, 8:16 PM
+ * 
  */
 
 #ifndef MAIN_H
@@ -14,9 +14,9 @@
 #include <queue>
 using namespace std;
 
+#include "util/Util.h"
 #include "serialport/RequestHandler.h"
 #include "serialport/SerialPort.h"
-#include "time/Time.h"
 #include "http/HueClient.h"
 
 class Main : public Poco::Util::ServerApplication, public RequestHandler {
@@ -25,19 +25,14 @@ public:
     virtual ~Main();
     int main(const std::vector<std::string>& args);
     void handler(std::vector<unsigned char> data);
-    vector<unsigned char> IntegerToBytes(int integer);
-    vector<unsigned char> ShortToBytes(short shortinteger);
     void appendToByteVector(vector<unsigned char>& OriginalVector, vector<unsigned char> AppendVector);
-
 private:
     Poco::Logger& m_logger;
     SerialPort m_serialport;
-    Time m_time;
     HueClient m_hueclient;
     int LightID;
     queue<unsigned char> m_buffer;
-    
-
+    tm* p_time;
 };
 
 #endif	/* MAIN_H */

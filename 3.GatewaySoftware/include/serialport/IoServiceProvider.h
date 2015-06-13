@@ -1,8 +1,8 @@
 /* 
- * File:   IoServiceProvider.h
- * Author: jeroen
+ * @file  IoServiceProvider.h
+ * @author Jeroen Vennegoor op Nijhuis
  *
- * Created on February 28, 2015, 10:05 AM
+ * 
  */
 
 #ifndef IOSERVICEPROVIDER_H
@@ -16,15 +16,12 @@
 class IoServiceProvider {
 public:
     IoServiceProvider();
-    
     virtual ~IoServiceProvider();
-
     IoService* getIoService();
 
 private:
     Poco::Logger& m_logger;
     IoService* asioIoService;
-    //boost::asio::io_service io_service;
     boost::asio::io_service::work* work;
     Poco::Thread* asio_thread;
 

@@ -9,7 +9,6 @@
 #include "../../include/serialport/IoServiceProvider.h"
 
 IoServiceProvider::IoServiceProvider() : m_logger(Poco::Logger::get("serialport.IoServiceProvider")) {
-
     try {
         asioIoService = new IoService();
         work = new boost::asio::io_service::work(*asioIoService);
