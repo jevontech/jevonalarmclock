@@ -700,10 +700,35 @@
         </df>
         <in>Main.cpp</in>
       </df>
-      <df name="test">
-        <in>TestServer.cpp</in>
-      </df>
     </df>
+    <logicalFolder name="gateway"
+                   displayName="gateway"
+                   projectFiles="true"
+                   root="../../gateway">
+      <logicalFolder name="external" displayName="external" projectFiles="true">
+        <logicalFolder name="download" displayName="download" projectFiles="true">
+          <logicalFolder name="gtest-1.7.0" displayName="gtest-1.7.0" projectFiles="true">
+            <logicalFolder name="src" displayName="src" projectFiles="true">
+              <itemPath>../../gateway/external/download/gtest-1.7.0/src/gtest-all.cc</itemPath>
+              <itemPath>../../gateway/external/download/gtest-1.7.0/src/gtest_main.cc</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+        </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="src" displayName="src" projectFiles="true">
+        <logicalFolder name="http" displayName="http" projectFiles="true">
+          <itemPath>../../gateway/src/http/HueClient.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="serialport" displayName="serialport" projectFiles="true">
+          <itemPath>../../gateway/src/serialport/IoServiceProvider.cpp</itemPath>
+          <itemPath>../../gateway/src/serialport/SerialPort.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="time" displayName="time" projectFiles="true">
+          <itemPath>../../gateway/src/time/Time.cpp</itemPath>
+        </logicalFolder>
+        <itemPath>../../gateway/src/Main.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
     <logicalFolder name="Modules"
                    displayName="Modules"
                    projectFiles="true"
@@ -892,6 +917,7 @@
               <itemPath>/opt/jevonalarmclock/src/poco/Data/SQLite/src/SessionImpl.cpp</itemPath>
               <itemPath>/opt/jevonalarmclock/src/poco/Data/SQLite/src/Utility.cpp</itemPath>
               <itemPath>/opt/jevonalarmclock/src/poco/Data/SQLite/src/sqlite3.c</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/poco/Data/SQLite/src/sqlite3.h</itemPath>
             </logicalFolder>
           </logicalFolder>
           <logicalFolder name="src" displayName="src" projectFiles="true">
@@ -1249,109 +1275,223 @@
               <logicalFolder name="compiler" displayName="compiler" projectFiles="true">
                 <logicalFolder name="cpp" displayName="cpp" projectFiles="true">
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_enum.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_enum.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_enum_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_enum_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_extension.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_extension.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_file.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_file.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_generator.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_helpers.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_helpers.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_map_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_map_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_message.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_message.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_message_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_message_field.h</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_options.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_primitive_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_primitive_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_service.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_service.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_string_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/cpp/cpp_string_field.h</itemPath>
                 </logicalFolder>
                 <logicalFolder name="java" displayName="java" projectFiles="true">
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_context.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_context.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_doc_comment.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_doc_comment.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_enum.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_enum.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_enum_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_enum_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_extension.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_extension.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_file.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_file.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_generator.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_generator_factory.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_generator_factory.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_helpers.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_helpers.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_lazy_message_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_lazy_message_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_map_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_map_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_message.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_message.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_message_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_message_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_name_resolver.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_name_resolver.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_primitive_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_primitive_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_service.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_service.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_shared_code_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_shared_code_generator.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_string_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/java/java_string_field.h</itemPath>
                 </logicalFolder>
                 <logicalFolder name="javanano" displayName="javanano" projectFiles="true">
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_enum.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_enum.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_enum_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_enum_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_extension.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_extension.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_file.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_file.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_generator.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_helpers.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_helpers.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_map_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_map_field.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_message.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_message.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_message_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_message_field.h</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_params.h</itemPath>
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_primitive_field.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/javanano/javanano_primitive_field.h</itemPath>
                 </logicalFolder>
                 <logicalFolder name="python" displayName="python" projectFiles="true">
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/python/python_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/python/python_generator.h</itemPath>
                 </logicalFolder>
                 <logicalFolder name="ruby" displayName="ruby" projectFiles="true">
                   <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/ruby/ruby_generator.cc</itemPath>
+                  <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/ruby/ruby_generator.h</itemPath>
                 </logicalFolder>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/code_generator.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/code_generator.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/command_line_interface.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/command_line_interface.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/importer.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/importer.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/main.cc</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/parser.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/parser.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/plugin.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/plugin.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/plugin.pb.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/plugin.pb.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/subprocess.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/subprocess.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/zip_writer.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/compiler/zip_writer.h</itemPath>
               </logicalFolder>
               <logicalFolder name="io" displayName="io" projectFiles="true">
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/coded_stream.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/coded_stream.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/coded_stream_inl.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/gzip_stream.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/gzip_stream.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/printer.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/printer.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/strtod.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/strtod.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/tokenizer.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/tokenizer.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream_impl.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.h</itemPath>
               </logicalFolder>
               <logicalFolder name="stubs" displayName="stubs" projectFiles="true">
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/atomic_sequence_num.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/atomicops.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/atomicops_internals_x86_gcc.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/atomicops_internals_x86_gcc.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/atomicops_internals_x86_msvc.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/casts.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/common.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/common.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/fastmem.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/hash.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/map_util.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/once.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/once.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/platform_macros.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/shared_ptr.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/singleton.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/stl_util.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/stringprintf.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/stringprintf.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/structurally_valid.cc</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/strutil.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/strutil.h</itemPath>
                 <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/substitute.cc</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/substitute.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/template_util.h</itemPath>
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/stubs/type_traits.h</itemPath>
+              </logicalFolder>
+              <logicalFolder name="testing" displayName="testing" projectFiles="true">
+                <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/testing/googletest.h</itemPath>
               </logicalFolder>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/arena.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/arena.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/arenastring.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/arenastring.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor.pb.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor.pb.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor_database.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/descriptor_database.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/dynamic_message.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/dynamic_message.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/extension_set.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/extension_set.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/extension_set_heavy.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/generated_enum_reflection.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/generated_message_reflection.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/generated_message_reflection.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/generated_message_util.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/generated_message_util.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map_entry.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map_field.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map_field.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map_field_inl.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/map_type_handler.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/message.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/message.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/message_lite.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/message_lite.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/metadata.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/reflection.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/reflection_internal.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/reflection_ops.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/reflection_ops.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/repeated_field.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/repeated_field.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/repeated_field_reflection.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/service.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/service.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/text_format.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/text_format.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/unknown_field_set.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/unknown_field_set.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/wire_format.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/wire_format.h</itemPath>
               <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/wire_format_lite.cc</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/wire_format_lite.h</itemPath>
+              <itemPath>/opt/jevonalarmclock/src/protobuf/src/google/protobuf/wire_format_lite_inl.h</itemPath>
             </logicalFolder>
           </logicalFolder>
         </logicalFolder>
@@ -1631,6 +1771,49 @@
           <executablePath></executablePath>
         </makeTool>
       </makefileType>
+      <item path="../../gateway/external/download/gtest-1.7.0/src/gtest-all.cc"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="7">
+        </ccTool>
+      </item>
+      <item path="../../gateway/external/download/gtest-1.7.0/src/gtest_main.cc"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="7">
+        </ccTool>
+      </item>
+      <item path="../../gateway/src/Main.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="6">
+        </ccTool>
+      </item>
+      <item path="../../gateway/src/http/HueClient.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="6">
+        </ccTool>
+      </item>
+      <item path="../../gateway/src/serialport/IoServiceProvider.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="6">
+        </ccTool>
+      </item>
+      <item path="../../gateway/src/serialport/SerialPort.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="6">
+        </ccTool>
+      </item>
+      <item path="../../gateway/src/time/Time.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="6">
+        </ccTool>
+      </item>
       <item path="/opt/jevonalarmclock/src/poco/Data/SQLite/src/Binder.cpp"
             ex="false"
             tool="1"
@@ -15892,17 +16075,6 @@
           </incDir>
         </ccTool>
       </folder>
-      <folder path="0/test">
-        <ccTool>
-          <incDir>
-            <pElem>/opt/jevonalarmclock/include</pElem>
-            <pElem>include</pElem>
-            <pElem>external/download/gtest-1.7.0/include</pElem>
-            <pElem>external/download/gtest-1.7.0</pElem>
-            <pElem>build/test</pElem>
-          </incDir>
-        </ccTool>
-      </folder>
       <folder path="Modules">
         <cTool>
           <incDir>
@@ -15912,6 +16084,33 @@
         <ccTool>
           <incDir>
             <pElem>build/CMakeFiles/CMakeTmp</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="gateway">
+        <ccTool>
+          <incDir>
+            <pElem>/opt/jevonalarmclock/include</pElem>
+            <pElem>../../gateway/include</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="gateway/external">
+        <ccTool>
+          <incDir>
+            <pElem>../../gateway/external/download/gtest-1.7.0/include</pElem>
+            <pElem>../../gateway/external/download/gtest-1.7.0</pElem>
+            <pElem>../../gateway/build/external/download/gtest-1.7.0</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>GTEST_HAS_PTHREAD=1</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="gateway/src">
+        <ccTool>
+          <incDir>
+            <pElem>../../gateway/build/src</pElem>
           </incDir>
         </ccTool>
       </folder>
@@ -16361,10 +16560,6 @@
         </ccTool>
       </item>
       <item path="src/time/Time.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="6">
-        </ccTool>
-      </item>
-      <item path="test/TestServer.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="6">
         </ccTool>
       </item>

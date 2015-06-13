@@ -28,17 +28,3 @@ ExternalProject_Add(poco
 #ExternalProject_Get_Property(poco install_dir)
 set(POCO_LIBRARIES ${JEVONALARMCLOCK_INSTALL}/lib/libPocoFoundationd.so ${JEVONALARMCLOCK_INSTALL}/lib/libPocoNetd.so ${JEVONALARMCLOCK_INSTALL}/lib/libPocoZipd.so ${JEVONALARMCLOCK_INSTALL}/lib/libPocoUtild.so ${JEVONALARMCLOCK_INSTALL}/lib/libPocoXMLd.so PARENT_SCOPE )
 MESSAGE("Poco libraries: ${POCO_LIBRARIES}")
-
-
-#Google Protocol buffers
-ExternalProject_Add(protobuf
-  URL ${CMAKE_CURRENT_SOURCE_DIR}/download/protobuf-cpp.tar.gz
-  PREFIX ${JEVONALARMCLOCK_INSTALL}
- # UPDATE_COMMAND <SOURCE_DIR>/autogen.sh
-  CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
-#PREFIX ${JEVONALARMCLOCK_INSTALL}
- #CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR>
-)
-ExternalProject_Get_Property(protobuf install_dir)
-set(PROTOBUF_LIBRARY ${install_dir}/lib/libprotobuf.so ${install_dir}/lib/libprotobuf-lite.so PARENT_SCOPE )
-MESSAGE("Protobuffer: protoc ${PROTOBUF_PROTOC_EXECUTABLE}")
