@@ -1,0 +1,11 @@
+*.o
+*.d
+*.crf
+*.axf
+*.htm
+*.iex
+*.TMP
+*.s
+*.orig
+*.dep
+Objects/*
