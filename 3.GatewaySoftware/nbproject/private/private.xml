@@ -10,15 +10,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/src/serialport/SerialPort.cpp</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/include/Main.h</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/include/serialport/SerialPort.h</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/src/Main.cpp</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/include/time/Time.h</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/src/time/Time.cpp</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/include/serialport/RequestHandler.h</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/src/http/HueClient.cpp</file>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/gateway/include/http/HueClient.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/serialport/SerialPort.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/http/HueClient.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/util/Util.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/serialport/SerialPort.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/external/CMakeLists.txt</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/serialport/IoServiceProvider.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/http/HueClient.h</file>
+            <file>file:/opt/jevonalarmclock/src/poco/Data/src/Time.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/CMakeLists.txt</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/Main.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/serialport/IoServiceProvider.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/Main.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/serialport/IoService.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/serialport/RequestHandler.h</file>
         </group>
     </open-files>
 </project-private>
