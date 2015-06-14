@@ -50,7 +50,7 @@ private:
     boost::asio::deadline_timer* mp_timer;
     boost::asio::streambuf* mp_streambuffer;
     std::deque<vector<unsigned char> > m_writeBuffer;
-    boost::array<unsigned char, 4 > m_buffer;
+    std::array<unsigned char, 4 > m_buffer;
     vector<unsigned char> m_readBuffer;
     string m_expectedReply;
     bool m_requestCompleted;
