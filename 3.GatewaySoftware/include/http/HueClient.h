@@ -25,8 +25,10 @@ struct LightState {
 
 class HueClient {
 public:
-    HueClient(string address);
+    HueClient();
     virtual ~HueClient();
+    void setAddress(string address);
+    
     void setLightState(int id, struct LightState state);
     struct LightState getLightState(int id);
 

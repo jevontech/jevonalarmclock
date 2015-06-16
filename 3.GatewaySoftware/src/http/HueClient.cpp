@@ -18,9 +18,12 @@
 #include "../../include/http/HueClient.h"
 #include "../../include/util/Util.h"
 
+HueClient::HueClient() : m_logger(Poco::Logger::get("HueClient")), m_address("") {
 
-HueClient::HueClient(string address) : m_logger(Poco::Logger::get("HueClient")), m_address(address) {
+}
 
+void HueClient::setAddress(string address) {
+    m_address = address;
 }
 
 HueClient::~HueClient() {
@@ -113,6 +116,7 @@ void HueClient::setLightState(int id, struct LightState state) {
 }
 
 //using Curl to perform HTTP GET calls
+
 string HueClient::HttpGet(string URL) {
     CURL *curl;
     CURLcode res;
@@ -135,6 +139,7 @@ string HueClient::HttpGet(string URL) {
 }
 
 //using Curl to perform HTTP PUT calls
+
 string HueClient::HttpPutJson(string URL, string body) {
     CURL *curl;
     CURLcode res;

@@ -10,6 +10,14 @@
 #include "Poco/Util/ServerApplication.h"
 #include "Poco/Process.h"
 #include "Poco/Logger.h"
+#include "Poco/File.h"
+#include "Poco/AutoPtr.h"
+#include "Poco/Util/XMLConfiguration.h"
+
+using Poco::File;
+using Poco::AutoPtr;
+using Poco::Util::XMLConfiguration;
+
 #include <string>
 #include <queue>
 using namespace std;
@@ -28,6 +36,8 @@ public:
     void appendToByteVector(vector<unsigned char>& OriginalVector, vector<unsigned char> AppendVector);
 private:
     Poco::Logger& m_logger;
+    string m_configfile;
+    AutoPtr<XMLConfiguration> p_conf;
     SerialPort m_serialport;
     HueClient m_hueclient;
     int LightID;
