@@ -15,12 +15,12 @@
  */
 
 //define variables
-void UART_Thread(void const *argument);                       // thread function
-osThreadId tid_UART_Thread;                                         // thread id
-osThreadDef(UART_Thread, osPriorityHigh, 1, 0);                 // thread object
+void UartThread(void const *argument);                       // thread function
+osThreadId tidUartThread;                                         // thread id
+osThreadDef(UartThread, osPriorityHigh, 1, 0);                 // thread object
 ARM_USART_STATUS status;
-int sendmessage = 0;
-int receiveready = 0;
+int sendMessage = 0;
+int receiveReady = 0;
 int waitingForReply = 0;
 uint8_t txBuffer[10];   //buffer for Tx data
 uint32_t txLength = 1;
@@ -29,26 +29,26 @@ uint8_t rxByte;
 uint32_t rxLength = 0;
 struct LightState state;
 int getLightStateReceived = 0;
-osMutexId Mutex1_id;                                     // mutex id
+osMutexId mutex1_id;                                     // mutex id
 osMutexDef(Mutex1);
 osStatus mutexStatus;
 
 /* extern */
 extern ARM_DRIVER_USART Driver_USART4;
-extern void SetClockTime(int hours, int minutes, int seconds);
+extern void setClockTime(int hours, int minutes, int seconds);
 
-void myUSART_callback(uint32_t event) {
+void uartCallback(uint32_t event) {
 	switch (event) {
 	case ARM_USART_EVENT_RECEIVE_COMPLETE:
 		rxBuffer[rxLength] = rxByte;
 		rxLength++;
-		osSignalSet(tid_UART_Thread, 0x01);
+		osSignalSet(tidUartThread, 0x01);
 		break;
 	case ARM_USART_EVENT_TRANSFER_COMPLETE:
 	case ARM_USART_EVENT_SEND_COMPLETE:
 	case ARM_USART_EVENT_TX_COMPLETE:
 		/* Success: Wakeup Thread */
-		osSignalSet(tid_UART_Thread, 0x02);
+		osSignalSet(tidUartThread, 0x02);
 		break;
 	case ARM_USART_EVENT_RX_TIMEOUT:
 		__breakpoint(0); /* Error: Call debugger or replace with custom error handling */
@@ -62,43 +62,43 @@ void myUSART_callback(uint32_t event) {
 	}
 }
 
-int Init_UART_Thread(void) {
-	Mutex1_id = osMutexCreate(osMutex(Mutex1));
-	tid_UART_Thread = osThreadCreate(osThread(UART_Thread), NULL);
-	if (!tid_UART_Thread)
+int initUartThread(void) {
+	mutex1_id = osMutexCreate(osMutex(Mutex1));
+	tidUartThread = osThreadCreate(osThread(UartThread), NULL);
+	if (!tidUartThread)
 		return (-1);
 
 	return (0);
 }
 
 /**
- * @brief  ParseData: parses RX data from UART
+ * @brief  parseData: parses RX data from UART
  * @param  uint8_t * pData, uint16_t length
  * @retval None
  */
 
-void ParseData(uint8_t * pData, uint16_t length) {
-	if (pData[0] == 0x04) {
+void parseData(uint8_t * data, uint16_t length) {
+	if (data[0] == 0x04) {
 		uint32_t seconds = 0;
 		uint32_t minutes = 0;
 		uint32_t hours = 0;
 		uint8_t* p;
-		p = pData + 2;
+		p = data + 2;
 		memcpy(&seconds, p, 4);
 		p = p + 4;
 		memcpy(&minutes, p, 4);
 		p = p + 4;
 		memcpy(&hours, p, 4);
-		SetClockTime(hours, minutes, seconds);
+		setClockTime(hours, minutes, seconds);
 	}
 
-	if (pData[0] == 0x06) {
+	if (data[0] == 0x06) {
 		uint8_t on = 0;
 		uint8_t bri = 0;
 		uint8_t sat = 0;
 		uint16_t hue = 0;
 		uint8_t* p;
-		p = pData + 2;
+		p = data + 2;
 		memcpy(&on, p, 1);
 		p = p + 1;
 		memcpy(&bri, p, 1);
@@ -121,7 +121,7 @@ void ParseData(uint8_t * pData, uint16_t length) {
  * @retval None
  */
 
-void UART_Thread(void const *argument) {
+void UartThread(void const *argument) {
 	static ARM_DRIVER_USART * USARTdrv = &Driver_USART4;
 
 	ARM_USART_STATUS usart_status;
@@ -131,7 +131,7 @@ void UART_Thread(void const *argument) {
 		rxBuffer[i] = 0x00;
 	}
 
-	USARTdrv->Initialize(myUSART_callback);
+	USARTdrv->Initialize(uartCallback);
 	USARTdrv->PowerControl(ARM_POWER_FULL);
 	/*Configure the USART to 9600 Bits/sec */
 	USARTdrv->Control(
@@ -145,12 +145,12 @@ void UART_Thread(void const *argument) {
 
 	while (1) {
 		//do we need to send a message?
-		if (sendmessage == 1) {
+		if (sendMessage == 1) {
 			usart_status = USARTdrv->GetStatus();
 			USARTdrv->Control(ARM_USART_CONTROL_TX, 1);
 			USARTdrv->Send((uint8_t*) txBuffer, txLength);
 			osSignalWait(0x02, osWaitForever);
-			sendmessage = 0;
+			sendMessage = 0;
 			waitingForReply = 1;
 
 		}
@@ -168,7 +168,7 @@ void UART_Thread(void const *argument) {
 				USARTdrv->Receive(&rxByte, 1);
 				osSignalWait(0x01, 2000);
 			}
-			ParseData(rxBuffer, rxLength);
+			parseData(rxBuffer, rxLength);
 			waitingForReply = 0;
 		}
 		osDelay(100);
@@ -181,13 +181,13 @@ void UART_Thread(void const *argument) {
  * @param  None
  * @retval None
  */
-void RequestTime() {
+void requestTime() {
 	uint8_t Command[3] = { 0x03, 0x03, 0xff };
-	mutexStatus = osMutexWait(Mutex1_id, NULL);
+	mutexStatus = osMutexWait(mutex1_id, NULL);
 	memcpy(txBuffer, Command, 3);
 	txLength = 3;
-	sendmessage = 1;
-	osMutexRelease(Mutex1_id);
+	sendMessage = 1;
+	osMutexRelease(mutex1_id);
 
 }
 
@@ -196,7 +196,7 @@ void RequestTime() {
  * @param  struct LightState
  * @retval None
  */
-void SetLightState(struct LightState state) {
+void setLightState(struct LightState state) {
 	uint8_t Command[8] = { 0x07, 0x09, 0, 0, 0, 0, 0, 0xff };
 	char hue1 = (state.hue >> (8 * 0));
 	char hue2 = (state.hue >> (8 * 1));
@@ -207,7 +207,7 @@ void SetLightState(struct LightState state) {
 	Command[6] = hue2;
 	memcpy(txBuffer, Command, 8);
 	txLength = 8;
-	sendmessage = 1;
+	sendMessage = 1;
 }
 
 /**
@@ -215,12 +215,12 @@ void SetLightState(struct LightState state) {
  * @param  None
  * @retval None
  */
-void GetLightState(void) {
+void getLightState(void) {
 	uint8_t Command[3] = { 0x05, 0x03, 0xff };
 	getLightStateReceived = 0;
 	memcpy(txBuffer, Command, 3);
 	txLength = 3;
-	sendmessage = 1;
+	sendMessage = 1;
 	while (getLightStateReceived == 0) {
 		osDelay(10);
 	}

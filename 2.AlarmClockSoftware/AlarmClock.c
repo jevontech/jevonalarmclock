@@ -13,35 +13,33 @@
   ******************************************************************************
 */
 
-const int lightprogramduration = 3; //minutes
-const int updownconstant = 5;
-struct LightState wakelight;
+const int lightProgramDuration = 1; //just 1 minute for demo & testing purposes
+const int upDownConstant = 5;
+struct LightState wakeLight;
 osMutexDef( Mutex);
 osMutexId mutex;
-time_t clocktime;
-int alarmtime_hours;
-int alarmtime_minutes;
-struct tm timeinfo;
+time_t clockTime;
+int alarmtimeHours;
+int alarmtimeMinutes;
+struct tm timeInfo;
 int upButtonCounter;
 int downButtonCounter;
 enum DeviceState deviceState;
-int alarmon;
-int alarmstate;
-int alarmsound;
+int alarmOn;
+int alarmState;
+int alarmSound;
 
 //extern
-extern void StartTimeoutTimer(void);
-//extern time_t ReadRTC(void);
-extern void WriteRTC(time_t t);
-extern void SetAlarmRTC(int hours, int minutes);
-//extern void PlayAlarm(void);
-extern void SetLightState(struct LightState state);
-extern void GetLightState(void);
+extern void startTimeoutTimer(void);
+extern void writeRTC(time_t t);
+extern void setAlarmRTC(int hours, int minutes);
+extern void setLightState(struct LightState state);
+extern void getLightState(void);
 extern struct LightState state;
 
-void ToggleLight()
+void toggleLight()
 {
-    GetLightState();
+    getLightState();
     if(state.on==1)
     {
         state.on=0;
@@ -50,42 +48,40 @@ void ToggleLight()
     {
         state.on=1;
     }
-    SetLightState(state);
+    setLightState(state);
 }
 
-void GetTime(time_t* time, int* hours, int* minutes, int* seconds) {
+void getTime(time_t* time, int* hours, int* minutes, int* seconds) {
 	*hours = localtime(time)->tm_hour;
 	*minutes = localtime(time)->tm_min;
 	*seconds = localtime(time)->tm_sec;
 }
 
-void SetClockTime(int hours, int minutes, int seconds) {
-	timeinfo.tm_hour = hours;
-	timeinfo.tm_min = minutes;
-	timeinfo.tm_sec = seconds;
-	clocktime = mktime(&timeinfo);
+void setClockTime(int hours, int minutes, int seconds) {
+	timeInfo.tm_hour = hours;
+	timeInfo.tm_min = minutes;
+	timeInfo.tm_sec = seconds;
+	clockTime = mktime(&timeInfo);
 
 	osMutexWait(mutex, osWaitForever);
-	WriteRTC(clocktime);
+	writeRTC(clockTime);
 	osMutexRelease(mutex);
 }
 
-void SaveAlarmTime() {
-
+void saveAlarmTime() {
 	osMutexWait(mutex, osWaitForever);
-	SetAlarmRTC(alarmtime_hours, alarmtime_minutes);
+	setAlarmRTC(alarmtimeHours, alarmtimeMinutes);
 	osMutexRelease(mutex);
 }
 
-void SetAlarmTime(int hours, int minutes) {
-	alarmtime_hours = hours;
-	alarmtime_minutes = minutes;
-
+void setAlarmTime(int hours, int minutes) {
+	alarmtimeHours = hours;
+	alarmtimeMinutes = minutes;
 }
 
-void AddAlarmTime(int addminutes) {
-	int hours = alarmtime_hours;
-	int minutes = alarmtime_minutes;
+void addAlarmTime(int addminutes) {
+	int hours = alarmtimeHours;
+	int minutes = alarmtimeMinutes;
 
 	minutes = minutes + addminutes;
 
@@ -108,28 +104,28 @@ void AddAlarmTime(int addminutes) {
 
 	}
 
-	SetAlarmTime(hours, minutes);
+	setAlarmTime(hours, minutes);
 }
 
-time_t GetAlarmTime() {
+time_t getAlarmTime() {
 	//map alarm time on today's date
 	//or tomorrow if today's alarm time has already passed
 
 	time_t alarmtime;
-	timeinfo.tm_year = localtime(&clocktime)->tm_year;
-	timeinfo.tm_mon = localtime(&clocktime)->tm_mon;
-	timeinfo.tm_mday = localtime(&clocktime)->tm_mday;
-	timeinfo.tm_hour = alarmtime_hours;
-	timeinfo.tm_min = alarmtime_minutes;
-	timeinfo.tm_sec = 0;
-	alarmtime = mktime(&timeinfo);
+	timeInfo.tm_year = localtime(&clockTime)->tm_year;
+	timeInfo.tm_mon = localtime(&clockTime)->tm_mon;
+	timeInfo.tm_mday = localtime(&clockTime)->tm_mday;
+	timeInfo.tm_hour = alarmtimeHours;
+	timeInfo.tm_min = alarmtimeMinutes;
+	timeInfo.tm_sec = 0;
+	alarmtime = mktime(&timeInfo);
 
-	if ((((int) alarmtime) - ((int) clocktime)) < 0) {
-		time_t tomorrow = clocktime + 24 * 60 * 60;
-		timeinfo.tm_year = localtime(&tomorrow)->tm_year;
-		timeinfo.tm_mon = localtime(&tomorrow)->tm_mon;
-		timeinfo.tm_mday = localtime(&tomorrow)->tm_mday;
-		alarmtime = mktime(&timeinfo);
+	if ((((int) alarmtime) - ((int) clockTime)) < 0) {
+		time_t tomorrow = clockTime + 24 * 60 * 60;
+		timeInfo.tm_year = localtime(&tomorrow)->tm_year;
+		timeInfo.tm_mon = localtime(&tomorrow)->tm_mon;
+		timeInfo.tm_mday = localtime(&tomorrow)->tm_mday;
+		alarmtime = mktime(&timeInfo);
 	}
 
 	return alarmtime;
@@ -137,88 +133,88 @@ time_t GetAlarmTime() {
 }
 
 //time in seconds
-int TimeUntilAlarm() {
+int getTimeUntilAlarm() {
 
-	return GetAlarmTime() - clocktime;
+	return getAlarmTime() - clockTime;
 
 }
 
-void IncreaseAlarmTime(int minutes) {
+void increaseAlarmTime(int minutes) {
 	if (deviceState == SETALARM) {
-		AddAlarmTime(minutes);
-		StartTimeoutTimer();
+		addAlarmTime(minutes);
+		startTimeoutTimer();
 	}
 }
-void DecreaseAlarmTime(int minutes) {
+void decreaseAlarmTime(int minutes) {
 	if (deviceState == SETALARM) {
-		AddAlarmTime(-minutes);
-		StartTimeoutTimer();
+		addAlarmTime(-minutes);
+		startTimeoutTimer();
 	}
 
 }
 
-void CheckAlarm() {
-	if (alarmon == 0) {
-		alarmstate = 0;
-		alarmsound = 0;
+void checkAlarm() {
+	if (alarmOn == 0) {
+		alarmState = 0;
+		alarmSound = 0;
 	}
-	if (alarmstate == 1 && alarmsound != 1) {
+	if (alarmState == 1 && alarmSound != 1) {
 		deviceState = ALARM;
-		alarmsound = 1;
+		alarmSound = 1;
 	}
 
 }
 
-void UpdateLightState() {
+void updateLightState() {
 
-	int updatecycle = 10;
-	int lightprogramdurationSeconds = lightprogramduration * 60;
-	int t = lightprogramdurationSeconds - TimeUntilAlarm();
-	int totalsteps = lightprogramdurationSeconds / updatecycle;
+	int updateCycle = 10;
+	int lightProgramDurationInSeconds = lightProgramDuration * 60;
+	int time = lightProgramDurationInSeconds - getTimeUntilAlarm();
+	int totalSteps = lightProgramDurationInSeconds / updateCycle;
 
-	if (t > 0 && alarmon == 1 && deviceState == NORMAL) {
-		int bri = ((t / updatecycle) * 255) / totalsteps;
-		wakelight.bri = bri;
-		wakelight.on = 1;
-		SetLightState(wakelight);
+	if (time > 0 && alarmOn == 1 && deviceState == NORMAL) {
+		int brightness = ((time / updateCycle) * 255) / totalSteps;
+		wakeLight.bri = brightness;
+		wakeLight.on = 1;
+		setLightState(wakeLight);
 	}
 
 }
 
-void ToggleAlarm() {
-	if (alarmon == 0) {
-		alarmon = 1;
+void toggleAlarm() {
+	if (alarmOn == 0) {
+		alarmOn = 1;
 		deviceState = SETALARM;
-		StartTimeoutTimer();
+		startTimeoutTimer();
 	} else {
-		alarmon = 0;
+		alarmOn = 0;
 		deviceState = NORMAL;
 	}
-	CheckAlarm();
+	checkAlarm();
 
 }
 
-void Init_AlarmClock() {
-	wakelight.bri = 0;
-	wakelight.sat = 255;
-	wakelight.hue = 14910;
-	wakelight.on = 0;
+void initAlarmClock() {
+	wakeLight.bri = 0;
+	wakeLight.sat = 255;
+	wakeLight.hue = 13910;
+	wakeLight.on = 0;
 	
-	timeinfo.tm_year = 2012 - 1900;
-	timeinfo.tm_mon = 1;
-	timeinfo.tm_mday = 1;
-	timeinfo.tm_hour = 0;
-	timeinfo.tm_min = 0;
-	timeinfo.tm_sec = 0;
-	timeinfo.tm_isdst = 0;
+	timeInfo.tm_year = 2012 - 1900;
+	timeInfo.tm_mon = 1;
+	timeInfo.tm_mday = 1;
+	timeInfo.tm_hour = 0;
+	timeInfo.tm_min = 0;
+	timeInfo.tm_sec = 0;
+	timeInfo.tm_isdst = 0;
 	mutex = osMutexCreate(osMutex(Mutex));
 
-	SetClockTime(0, 0, 0);
-	SetAlarmTime(0, 0);
+	setClockTime(0, 0, 0);
+	setAlarmTime(0, 0);
 
 	deviceState = NORMAL;
-	alarmon = 0;
-	alarmstate = 0;
-	alarmsound = 0;
+	alarmOn = 0;
+	alarmState = 0;
+	alarmSound = 0;
 
 }

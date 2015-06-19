@@ -414,11 +414,6 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>UART_Thread.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\UART_Thread.c</FilePath>
-            </File>
-            <File>
               <FileName>MainThread.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MainThread.c</FilePath>
@@ -448,6 +443,11 @@
               <FileType>1</FileType>
               <FilePath>.\Timers.c</FilePath>
             </File>
+            <File>
+              <FileName>UartThread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UartThread.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -459,9 +459,9 @@
               <FilePath>.\MainDialog.c</FilePath>
             </File>
             <File>
-              <FileName>GUI_Thread.c</FileName>
+              <FileName>GuiThread.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\GUI_Thread.c</FilePath>
+              <FilePath>.\GuiThread.c</FilePath>
             </File>
           </Files>
         </Group>

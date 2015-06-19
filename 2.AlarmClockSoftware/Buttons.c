@@ -4,35 +4,31 @@
 
 #define BUTTON1_PORT               GPIOA
 #define BUTTON1_PIN               GPIO_PIN_0
-
 #define LIGHTBUTTON_PORT               GPIOE
 #define LIGHTBUTTON_PIN               GPIO_PIN_6
-
 #define ALARMBUTTON_PORT               GPIOE
 #define ALARMBUTTON_PIN               GPIO_PIN_3
-
 #define UPBUTTON_PORT               GPIOE
 #define UPBUTTON_PIN               GPIO_PIN_4
-
 #define DOWNBUTTON_PORT               GPIOE
 #define DOWNBUTTON_PIN               GPIO_PIN_2
 
-int Counter1 = 0;
-int Counter2 = 0;
-int Counter3 = 0;
-int Counter4 = 0;
-int LightButtonState = 0;
-int AlarmButtonState = 0;
-int UpButtonState = 0;
-int DownButtonState = 0;
-int LightButtonHandled = 1;
-int AlarmButtonHandled = 1;
-int UpButtonHandled = 1;
-int DownButtonHandled = 1;
-int ThresholdShort = 3;
-int ThresholdLong = 30;
+int counter1 = 0;
+int counter2 = 0;
+int counter3 = 0;
+int counter4 = 0;
+int lightButtonState = 0;
+int alarmButtonState = 0;
+int upButtonState = 0;
+int downButtonState = 0;
+int lightButtonHandled = 1;
+int alarmButtonHandled = 1;
+int upButtonHandled = 1;
+int downButtonHandled = 1;
+int thresholdShort = 3;
+int thresholdLong = 30;
 
-void Init_Buttons(void) {
+void initButtons(void) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	__GPIOE_CLK_ENABLE();
 	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -47,87 +43,87 @@ void Init_Buttons(void) {
 	HAL_GPIO_Init(DOWNBUTTON_PORT, &GPIO_InitStruct);
 }
 
-void CheckButtons() {
+void checkButtons() {
 	//software debouncing
 	if (HAL_GPIO_ReadPin(LIGHTBUTTON_PORT, LIGHTBUTTON_PIN) != GPIO_PIN_SET) {
-		Counter1++;
+		counter1++;
 	} else {
-		Counter1 = 0;
+		counter1 = 0;
 	}
 
 	if (HAL_GPIO_ReadPin(ALARMBUTTON_PORT, ALARMBUTTON_PIN) != GPIO_PIN_SET) {
-		Counter2++;
+		counter2++;
 	} else {
-		Counter2 = 0;
-		AlarmButtonHandled = 0;
+		counter2 = 0;
+		alarmButtonHandled = 0;
 	}
 
 	if (HAL_GPIO_ReadPin(UPBUTTON_PORT, UPBUTTON_PIN) != GPIO_PIN_SET) {
-		Counter3++;
+		counter3++;
 	} else {
-		Counter3 = 0;
+		counter3 = 0;
 	}
 
 	if (HAL_GPIO_ReadPin(DOWNBUTTON_PORT, DOWNBUTTON_PIN) != GPIO_PIN_SET) {
-		Counter4++;
+		counter4++;
 	} else {
-		Counter4 = 0;
+		counter4 = 0;
 	}
 
-	if (Counter1 >= ThresholdShort) {
-		if (Counter1 >= ThresholdLong) {
-			LightButtonState = 2;
+	if (counter1 >= thresholdShort) {
+		if (counter1 >= thresholdLong) {
+			lightButtonState = 2;
 		} else {
-			LightButtonState = 1;
+			lightButtonState = 1;
 		}
 	} else {
-		LightButtonState = 0;
+		lightButtonState = 0;
 	}
 
-	if (Counter2 >= ThresholdShort) {
-		if (Counter2 >= ThresholdLong) {
-			AlarmButtonState = 2;
+	if (counter2 >= thresholdShort) {
+		if (counter2 >= thresholdLong) {
+			alarmButtonState = 2;
 		} else {
-			AlarmButtonState = 1;
+			alarmButtonState = 1;
 		}
 	} else {
-		AlarmButtonState = 0;
+		alarmButtonState = 0;
 	}
 
-	if (Counter3 >= ThresholdShort) {
-		if (Counter3 >= ThresholdLong) {
-			UpButtonState = 2;
+	if (counter3 >= thresholdShort) {
+		if (counter3 >= thresholdLong) {
+			upButtonState = 2;
 		} else {
-			UpButtonState = 1;
+			upButtonState = 1;
 		}
 	} else {
-		UpButtonState = 0;
+		upButtonState = 0;
 	}
 
-	if (Counter4 >= ThresholdShort) {
-		if (Counter4 >= ThresholdLong) {
-			DownButtonState = 2;
+	if (counter4 >= thresholdShort) {
+		if (counter4 >= thresholdLong) {
+			downButtonState = 2;
 		} else {
-			DownButtonState = 1;
+			downButtonState = 1;
 		}
 	} else {
-		DownButtonState = 0;
+		downButtonState = 0;
 	}
 
 }
 
-int GetLightButtonState() {
-	return LightButtonState;
+int getLightButtonState() {
+	return lightButtonState;
 }
 
-int GetAlarmButtonState() {
-	return AlarmButtonState;
+int getAlarmButtonState() {
+	return alarmButtonState;
 }
 
-int GetUpButtonState() {
-	return UpButtonState;
+int getUpButtonState() {
+	return upButtonState;
 }
 
-int GetDownButtonState() {
-	return DownButtonState;
+int getDownButtonState() {
+	return downButtonState;
 }

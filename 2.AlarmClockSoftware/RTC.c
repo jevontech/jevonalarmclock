@@ -10,25 +10,25 @@
  */
 
 static RTC_HandleTypeDef RtcHandle;
-static int rtc_inited = 0;
+static int rtcInitComplete = 0;
 static int error = 1;
 
-extern int alarmstate;
+extern int alarmState;
 
 void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc) {
-	alarmstate = 1;
+	alarmState = 1;
 }
 
 void RTC_Alarm_IRQHandler(void) {
 	HAL_RTC_AlarmIRQHandler(&RtcHandle);
 }
 
-void Init_RTC(void) {
+void initRTC(void) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	uint32_t rtc_freq = 0;
-	if (rtc_inited)
+	if (rtcInitComplete)
 		return;
-	rtc_inited = 1;
+	rtcInitComplete = 1;
 
 	RtcHandle.Instance = RTC;
 
@@ -80,10 +80,10 @@ void FreeRTC(void) {
 	// Disable access to Backup domain
 	HAL_PWR_DisableBkUpAccess();
 
-	rtc_inited = 0;
+	rtcInitComplete = 0;
 }
 
-time_t ReadRTC(void) {
+time_t readRTC(void) {
 	RTC_DateTypeDef dateStruct;
 	RTC_TimeTypeDef timeStruct;
 	struct tm timeinfo;
@@ -104,7 +104,7 @@ time_t ReadRTC(void) {
 	return t;
 }
 
-void WriteRTC(time_t t) {
+void writeRTC(time_t t) {
 	RTC_DateTypeDef dateStruct;
 	RTC_TimeTypeDef timeStruct;
 	struct tm *timeinfo;
@@ -126,11 +126,8 @@ void WriteRTC(time_t t) {
 	HAL_RTC_SetTime(&RtcHandle, &timeStruct, FORMAT_BIN);
 }
 
-time_t ReadAlarmTime() {
 
-}
-
-void SetAlarmRTC(int hours, int minutes) {
+void setAlarmRTC(int hours, int minutes) {
 
 	RTC_AlarmTypeDef alarmStruct;
 	RTC_TimeTypeDef timeStruct;

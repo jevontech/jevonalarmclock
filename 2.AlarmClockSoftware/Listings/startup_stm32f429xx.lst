@@ -923,17 +923,17 @@ ARM Macro Assembler    Page 15
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_stm32f429xx.d -o.\objects\startup_stm32f429xx
-.o -IE:\projects\150008-jevonalarmclock\0.Deliverables\AlarmClockSoftware\RTE -
-IE:\projects\150008-jevonalarmclock\0.Deliverables\AlarmClockSoftware\RTE\Devic
-e\STM32F429ZITx -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Driver\Include -IC:
-\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS
-\4.2.0\CMSIS_RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\6.2.0\Board -IC:
-\Keil_v5\ARM\PACK\Keil\MDK-Middleware\6.2.0\emWin\Include -IC:\Keil_v5\ARM\PACK
-\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v
-5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\STM32F4xx_HAL_Driver\Inc --predefin
-e="__RTX SETA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="_RTE_ SE
-TA 1" --predefine="STM32F429xx SETA 1" --list=.\listings\startup_stm32f429xx.ls
-t RTE\Device\STM32F429ZITx\startup_stm32f429xx.s
+.o -IE:\projects\150008-jevonalarmclock\0.Deliverables\2.AlarmClockSoftware\RTE
+ -IE:\projects\150008-jevonalarmclock\0.Deliverables\2.AlarmClockSoftware\RTE\D
+evice\STM32F429ZITx -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Driver\Include 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\C
+MSIS\4.2.0\CMSIS_RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\6.2.0\Board 
+-IC:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\6.2.0\emWin\Include -IC:\Keil_v5\ARM\
+PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Ke
+il_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\STM32F4xx_HAL_Driver\Inc --pred
+efine="__RTX SETA 1" --predefine="__UVISION_VERSION SETA 514" --predefine="_RTE
+_ SETA 1" --predefine="STM32F429xx SETA 1" --list=.\listings\startup_stm32f429x
+x.lst RTE\Device\STM32F429ZITx\startup_stm32f429xx.s
 
 
 

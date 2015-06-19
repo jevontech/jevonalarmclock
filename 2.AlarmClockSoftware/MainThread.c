@@ -3,7 +3,6 @@
 #include <cmsis_os.h>                                           // CMSIS RTOS header file
 #include "stm32f4xx_hal.h"
 #include "LightState.h"
-//#include "GUI.h"
 
 /**
  ******************************************************************************
@@ -17,32 +16,33 @@
 void MainThread(void const *argument);                        // thread function
 osThreadId tid_MainThread;                                          // thread id
 osThreadDef(MainThread, osPriorityNormal, 1, 0);                // thread object
-GPIO_PinState PwmPin;
+GPIO_PinState pwmPin;
 
-const int SmallTimeStep = 1;
-const int BigTimeStep = 15;
+const int smallTimeStep = 1;
+const int bigTimeStep = 15;
 
 //extern
-extern void RequestTime(void);
-extern void ToggleLight(void);
-extern void ToggleAlarm(void);
-extern void CheckButtons(void);
-extern int GetLightButtonState(void);
-extern int GetAlarmButtonState(void);
-extern int GetUpButtonState(void);
-extern int GetDownButtonState(void);
-extern void IncreaseAlarmTime(int);
-extern void DecreaseAlarmTime(int);
-extern void CheckAlarm(void);
-extern void UpdateGUI(void);
-extern int AlarmButtonHandled;
+extern int alarmButtonHandled;
+extern void requestTime(void);
+extern void toggleLight(void);
+extern void toggleAlarm(void);
+extern void checkButtons(void);
+extern int getLightButtonState(void);
+extern int getAlarmButtonState(void);
+extern int getUpButtonState(void);
+extern int getDownButtonState(void);
+extern void increaseAlarmTime(int);
+extern void decreaseAlarmTime(int);
+extern void checkAlarm(void);
+extern void updateGui(void);
+
 
 /**
  * @brief  Initialization
  * @param  None
  * @retval int
  */
-int Init_MainThread(void) {
+int initMainThread(void) {
 	tid_MainThread = osThreadCreate(osThread(MainThread), NULL);
 	if (!tid_MainThread)
 		return (-1);
@@ -58,40 +58,39 @@ int Init_MainThread(void) {
 void MainThread(void const *argument) {
 
 	//update RTC with time from the Internet
-	RequestTime();
-	//ForceGUIupdate();
+	requestTime();
 
 	while (1) {
-		CheckButtons();
-		CheckAlarm();
+		checkButtons();
+		checkAlarm();
 
-		if (GetLightButtonState() == 1) {
-			ToggleLight();
+		if (getLightButtonState() == 1) {
+			toggleLight();
 		}
 
-		if (GetAlarmButtonState() == 1) {
-			if (AlarmButtonHandled == 0) {
-				ToggleAlarm();
-				AlarmButtonHandled = 1;
+		if (getAlarmButtonState() == 1) {
+			if (alarmButtonHandled == 0) {
+				toggleAlarm();
+				alarmButtonHandled = 1;
 			}
 		}
-		if (GetUpButtonState() > 0) {
-			if (GetUpButtonState() == 1) {
-				IncreaseAlarmTime(SmallTimeStep);
+		if (getUpButtonState() > 0) {
+			if (getUpButtonState() == 1) {
+				increaseAlarmTime(smallTimeStep);
 			} else {
-				IncreaseAlarmTime(BigTimeStep);
+				increaseAlarmTime(bigTimeStep);
 			}
 
 		}
-		if (GetDownButtonState() > 0) {
-			if (GetDownButtonState() == 1) {
-				DecreaseAlarmTime(SmallTimeStep);
+		if (getDownButtonState() > 0) {
+			if (getDownButtonState() == 1) {
+				decreaseAlarmTime(smallTimeStep);
 			} else {
-				DecreaseAlarmTime(BigTimeStep);
+				decreaseAlarmTime(bigTimeStep);
 			}
 
 		}
-		UpdateGUI();
+		updateGui();
 
 		osDelay(50);
 		osThreadYield();                                       // suspend thread

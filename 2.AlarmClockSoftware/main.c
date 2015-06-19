@@ -34,17 +34,17 @@ uint32_t HAL_GetTick(void)
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-static void SystemClock_Config(void);
+static void systemClockConfig(void);
 static void Error_Handler(void);
 
-extern void Init_RTC(void);
-extern int Init_GUIThread(void);
-extern int Init_UART_Thread(void);
-extern int Init_MainThread(void);
-extern void Init_Timers(void);
-extern void Init_Buttons(void);
-extern void Init_AlarmClock(void);
-extern void Init_PwmOutput(void);
+extern void initRTC(void);
+extern int initGuiThread(void);
+extern int initUartThread(void);
+extern int initMainThread(void);
+extern void initTimers(void);
+extern void initButtons(void);
+extern void initAlarmClock(void);
+extern void initPwmOutput(void);
 
 /* Private functions ---------------------------------------------------------*/
 /**
@@ -56,17 +56,15 @@ int main(void) {
 
 	osKernelInitialize();                // initialize CMSIS-RTOS
 	HAL_Init();
-	Init_RTC();
-
-	/* Configure the System clock to have a frequency of 168 MHz */
-	SystemClock_Config();
-	Init_PwmOutput();
-	Init_Buttons();
-	Init_AlarmClock();
-	Init_GUIThread();
-	Init_UART_Thread();
-	Init_Timers();
-	Init_MainThread();
+	initRTC();
+	systemClockConfig();
+	initPwmOutput();
+	initButtons();
+	initAlarmClock();
+	initGuiThread();
+	initUartThread();
+	initTimers();
+	initMainThread();
 
 	osKernelStart();                     // start thread execution
 
@@ -92,7 +90,7 @@ int main(void) {
  * @param  None
  * @retval None
  */
-static void SystemClock_Config(void) {
+static void systemClockConfig(void) {
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 
@@ -142,28 +140,6 @@ static void Error_Handler(void) {
 	while (1) {
 	}
 }
-
-#ifdef  USE_FULL_ASSERT
-
-/**
- * @brief  Reports the name of the source file and the source line number
- *         where the assert_param error has occurred.
- * @param  file: pointer to the source file name
- * @param  line: assert_param error line source number
- * @retval None
- */
-void assert_failed(uint8_t* file, uint32_t line)
-{
-	/* User can add his own implementation to report the file name and line number,
-	 ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-	/* Infinite loop */
-	while (1)
-	{
-	}
-}
-#endif
-
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
