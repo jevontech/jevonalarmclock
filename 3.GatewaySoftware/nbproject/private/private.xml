@@ -10,9 +10,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/serialport/SerialPort.h</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/Main.h</file>
             <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/Main.cpp</file>
             <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/src/http/HueClient.cpp</file>
+            <file>file:/home/jeroen/swprojects/150008-jevonalarmclock/jevonalarmclock/3.GatewaySoftware/include/http/HueClient.h</file>
         </group>
     </open-files>
 </project-private>

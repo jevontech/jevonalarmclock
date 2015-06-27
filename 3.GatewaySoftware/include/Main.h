@@ -13,19 +13,19 @@
 #include "Poco/File.h"
 #include "Poco/AutoPtr.h"
 #include "Poco/Util/XMLConfiguration.h"
-
+#include <string>
+#include <queue>
 using Poco::File;
 using Poco::AutoPtr;
 using Poco::Util::XMLConfiguration;
-
-#include <string>
-#include <queue>
 using namespace std;
 
 #include "util/Util.h"
 #include "serialport/RequestHandler.h"
 #include "serialport/SerialPort.h"
 #include "http/HueClient.h"
+
+
 
 class Main : public Poco::Util::ServerApplication, public RequestHandler {
 public:

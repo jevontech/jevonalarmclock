@@ -9,40 +9,31 @@
 #include "Poco/LogStream.h"
 #include "../include/Main.h"
 
-Main::Main() : m_logger(Poco::Logger::get("main")), m_configfile("config.xml"), p_conf(), m_serialport(this),   m_hueclient(),LightID(1),m_buffer() {
+Main::Main() : m_logger(Poco::Logger::get("main")), m_configfile("config.xml"), p_conf(), m_serialport(this), m_hueclient(), LightID(1), m_buffer() {
 
-    string huegateway="";
-    int lampid=1;
+    string huegateway = "";
+    int lampid = 1;
     string serialport = "";
 
     File configfile(m_configfile);
-    
+
     if (!configfile.exists()) {
         //create a new XML config file and set default values
         p_conf = new XMLConfiguration();
-        p_conf->loadEmpty("alarmclock");        
+        p_conf->loadEmpty("alarmclock");
         p_conf->setString("HueGateway", "10.55.55.24:80");
         p_conf->setInt("LampId", 3);
         p_conf->setString("SerialPort", "/dev/ttyUSB0");
         p_conf->save(m_configfile);
-        //p_conf->save(m_configfile);
-
     }
-    else{
-        //load config from XML config file
-           p_conf = new XMLConfiguration(m_configfile);
-        
-    }
-    
-    
-    
-    huegateway=p_conf->getString("HueGateway");
-    lampid=p_conf->getInt("LampId");
-    serialport=p_conf->getString("SerialPort");
 
+    //load config from XML config file
+    p_conf = new XMLConfiguration(m_configfile);
+    huegateway = p_conf->getString("HueGateway");
+    lampid = p_conf->getInt("LampId");
+    serialport = p_conf->getString("SerialPort");
     m_hueclient.setAddress(huegateway);
-    LightID=lampid;
-
+    LightID = lampid;
     m_serialport.open(serialport);
     m_serialport.startReading();
 }

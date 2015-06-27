@@ -695,8 +695,6 @@
           </df>
         </df>
       </df>
-      <df name="doc">
-      </df>
       <df name="external">
         <df name="download">
           <df name="gtest-1.7.0">

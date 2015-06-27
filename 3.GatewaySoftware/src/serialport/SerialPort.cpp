@@ -60,7 +60,6 @@ bool SerialPort::open(string port) {
         }
     }
 
-
     return ok;
 }
 
@@ -104,7 +103,7 @@ int SerialPort::getBaudrate() {
 }
 
 void SerialPort::sendData(vector<unsigned char> data) {
-    // m_logger.debug("sendData:" + data);
+
     if (isOpen()) {
 
         mp_asioIoService->post(boost::bind(&SerialPort::write, this, data));
@@ -167,13 +166,9 @@ void SerialPort::readData(size_t bytes_transferred) {
     for (int i = 0; i < bytes_transferred; i++) {
         m_readBuffer.push_back(m_buffer[i]);
     }
-
     unsigned char lastchar = m_readBuffer.at(m_readBuffer.size() - 1);
-    //std::cout << "last char" <<  std::hex << lastchar << std::endl ;
-    //std::cout << "FF char" <<  std::hex << 0xFF << std::endl ;
 
     if (lastchar == 0xFF) {
-        //m_logger.debug("last char is FF");
         p_requesthandler->handler(m_readBuffer);
         m_readBuffer.clear();
     }
@@ -191,30 +186,6 @@ void SerialPort::do_close(const boost::system::error_code& error) {
 
 }
 
-//bool SerialPort::sendRequestAndExpectReply(string request, string reply) {
-//    m_replyOK=false;
-//    m_expectedReply=reply;
-//    char lastchar = reply.at(reply.length()-1); 
-//    
-//    boost::system::error_code ignored_error;
-//    boost::asio::write(*mp_serialPort, boost::asio::buffer(request),
-//            boost::asio::transfer_all(), ignored_error);
-//    m_logger.debug("Read until end character found");
-//    boost::asio::async_read_until(*mp_serialPort, *mp_streambuffer, lastchar,
-//            boost::bind(&SerialPort::handler, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
-//
-//    mp_timer->expires_from_now(boost::posix_time::milliseconds(3000));
-//    mp_timer->async_wait(boost::bind(&SerialPort::timeout, this, _1));
-//
-//    while (!m_requestCompleted) {
-//        boost::this_thread::sleep(boost::posix_time::milliseconds(50));
-//    }
-//    if (m_replyOK) {
-//        m_logger.debug("This is the correct serial port: device connected");
-//    } 
-//
-//    return m_replyOK;
-//}
 
 void SerialPort::timeout(const boost::system::error_code& e) {
     if (e == boost::asio::error::operation_aborted) {
@@ -230,29 +201,5 @@ void SerialPort::timeout(const boost::system::error_code& e) {
         m_requestCompleted = true;
     }
 }
-
-//void SerialPort::handler(const boost::system::error_code& err, std::size_t size) {
-//    if (err) {
-//        m_logger.error("Error: " + err.message());
-//    } else {
-//        std::istream is(mp_streambuffer);
-//        std::string B;
-//        is >> B;
-//        m_logger.debug("Reply received : " + B);
-//        if (boost::algorithm::find_first(B, m_expectedReply)) {
-//            mp_timer->cancel();
-//            m_replyOK = true;
-//        } else {
-//            mp_timer->cancel();
-//            mp_serialPort->cancel();
-//            m_replyOK = false;
-//            if (mp_streambuffer) {
-//                delete mp_streambuffer;
-//            }
-//        }
-//        m_requestCompleted = true;
-//    }
-//}
-
 
 
