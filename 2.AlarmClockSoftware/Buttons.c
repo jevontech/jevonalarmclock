@@ -2,6 +2,15 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx_hal_gpio.h"
 
+/**
+ ******************************************************************************
+ * @file    Buttons.c
+ * @author  Jeroen Vennegoor op Nijhuis
+ * @version V1.0
+ * @brief   Button press handler
+ ******************************************************************************
+ */
+
 #define BUTTON1_PORT               GPIOA
 #define BUTTON1_PIN               GPIO_PIN_0
 #define LIGHTBUTTON_PORT               GPIOE

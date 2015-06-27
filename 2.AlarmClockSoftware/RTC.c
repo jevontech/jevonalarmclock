@@ -5,7 +5,7 @@
  * @file    RTC
  * @author  Jeroen Vennegoor op Nijhuis
  * @version V1.0
- * @brief   Wrapper for RTC functionality in HAL
+ * @brief   Wrapper for RTC functionality in STM HAL library
  ******************************************************************************
  */
 

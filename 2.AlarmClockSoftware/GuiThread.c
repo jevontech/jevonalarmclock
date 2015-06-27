@@ -6,7 +6,7 @@
 
 /**
  ******************************************************************************
- * @file    GuiThread
+ * @file    GuiThread.c
  * @author  Jeroen Vennegoor op Nijhuis
  * @version V1.0
  * @brief   GUI thread: takes care of updating the LCD
